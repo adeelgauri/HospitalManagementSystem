@@ -5,6 +5,8 @@ public class HospitalManagementSystem {
 
         Scanner scanner = new Scanner(System.in);
         JDBC connection = new JDBC();
+        Doctors doctors = new Doctors(connection.jdbcConnection());
+        Patient patient = new Patient(connection.jdbcConnection(),scanner);
 
         while (true) {
 
@@ -19,19 +21,19 @@ public class HospitalManagementSystem {
 
             switch (choice) {
                 case 1:
-                    Patient.addPatient(connection.jdbcConnection(), scanner);
+                    patient.addPatient();
                     break;
                 case 2:
-                    Patient.checkPatient(connection.jdbcConnection(), scanner);
+                    patient.getPatientById();
                     break;
                 case 3:
-                    Patient.viewPatient(connection.jdbcConnection(), scanner);
+                    patient.viewPatient();
                     break;
                 case 4:
-                    Doctors.viewDoctors(JDBC.jdbcConnection(), scanner);
+                    doctors.viewDoctors();
                     break;
                 case 5:
-                    Doctors.checkDoctors(JDBC.jdbcConnection(), scanner);
+                    doctors.getDoctorById();
                     break;
                 case 0:
                     exit();
